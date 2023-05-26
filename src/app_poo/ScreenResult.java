@@ -9,5 +9,6 @@ package app_poo;
  * @author Cherno
  */
 public enum ScreenResult {
-    
+    exitScreen,
+    continueScreen
 }

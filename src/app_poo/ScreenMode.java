@@ -9,5 +9,7 @@ package app_poo;
  * @author Cherno
  */
 public enum ScreenMode {
-    
+    messageMode,
+    optionsMode,
+    theaterMode
 }

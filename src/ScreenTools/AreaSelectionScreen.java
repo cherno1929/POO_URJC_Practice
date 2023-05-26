@@ -4,10 +4,28 @@
  */
 package ScreenTools;
 
+import TheaterTools.TheaterAreaState;
+import app_poo.DispenserManager;
+import app_poo.Screen;
+import app_poo.ScreenMode;
+
 /**
  *
  * @author Cherno
  */
-public class AreaSelectionScreen {
+public class AreaSelectionScreen extends Screen{
+    
+    private TheaterAreaState selectArea = new TheaterAreaState();
+    private SeatSelectionScreen seatSelector;
+
+    public AreaSelectionScreen(DispenserManager dispenserManager, String title, ScreenMode mode) {
+        super(dispenserManager, title, mode);
+    }
+    
+    //Methods
+    private void displayArea(TheaterAreaState area){
+        
+    }
+    
     
 }

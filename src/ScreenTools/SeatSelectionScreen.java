@@ -4,10 +4,42 @@
  */
 package ScreenTools;
 
+import TheaterTools.TheaterAreaState;
+import app_poo.DispenserManager;
+import app_poo.Screen;
+import app_poo.ScreenMode;
+import app_poo.ScreenResult;
+
 /**
  *
  * @author Cherno
  */
-public class SeatSelectionScreen {
+public class SeatSelectionScreen extends Screen{
+    
+    private TheaterAreaState selectArea = new TheaterAreaState();
+    private PaymentScreen paySc;
+    
+    public ScreenResult optionButtonPressed(char c){
+        return null;
+    } 
+    
+    public ScreenResult seatButton(int row, int col){
+        return null;
+    } 
+    
+    public void updateState(){
+        
+    } 
+    
+    private void computePrice(){
+        
+    }
+    
+    //Constr
+    public SeatSelectionScreen(DispenserManager dispenserManager, String title, ScreenMode mode) {
+        super(dispenserManager, title, mode);
+    }
+    
+    
     
 }
