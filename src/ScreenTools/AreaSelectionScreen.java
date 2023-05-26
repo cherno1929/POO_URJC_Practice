@@ -15,7 +15,7 @@ import app_poo.ScreenMode;
  */
 public class AreaSelectionScreen extends Screen{
     
-    private TheaterAreaState selectArea = new TheaterAreaState();
+    private TheaterAreaState selectArea;
     private SeatSelectionScreen seatSelector;
 
     public AreaSelectionScreen(DispenserManager dispenserManager, String title, ScreenMode mode) {

@@ -16,7 +16,7 @@ import app_poo.ScreenResult;
  */
 public class SeatSelectionScreen extends Screen{
     
-    private TheaterAreaState selectArea = new TheaterAreaState();
+    private TheaterAreaState selectArea;
     private PaymentScreen paySc;
     
     public ScreenResult optionButtonPressed(char c){

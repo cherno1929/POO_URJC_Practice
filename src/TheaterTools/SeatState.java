@@ -9,5 +9,6 @@ package TheaterTools;
  * @author Cherno
  */
 public enum SeatState {
-    
+    occupied,
+    free
 }
