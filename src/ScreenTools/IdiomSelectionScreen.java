@@ -24,6 +24,7 @@ public class IdiomSelectionScreen extends Screen{
         return null;
     }
     
+    
     //Contructor
     public IdiomSelectionScreen(DispenserManager dispenserManager, String title, ScreenMode mode) {
         super(dispenserManager, title, mode);

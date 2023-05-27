@@ -5,11 +5,17 @@
 package ScreenTools;
 
 import TheaterTools.TheaterState;
+import app_poo.DispenserHardware;
 import app_poo.DispenserManager;
 import app_poo.Screen;
 import app_poo.ScreenMode;
+import app_poo.ScreenResult;
 import app_poo.Theater;
-import java.awt.List;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,12 +30,41 @@ public class DataSelectionScreen extends Screen{
     private AreaSelectionScreen areaScreen;
     
     //Methods
-    private List getDatesFromToday(){
-        return null;
+    private List<Date> getDatesFromToday(){
+        List<Date> days = new ArrayList<Date>();
+        Date nowDate = new Date();
+        Calendar dateControll = Calendar.getInstance();
+        days.add(nowDate);
+        for (int i = 0; i < 3; i++) {
+            dateControll.setTime(nowDate);
+            dateControll.add(Calendar.DATE, 1);
+            nowDate = dateControll.getTime();
+            days.add(nowDate);
+        }
+        return days;
+    }
+    
+    
+    public List<String> getOptions(){
+        List<String> options = new ArrayList<String>();
+        DateFormat dayCov = new SimpleDateFormat("yyyy-MM-dd");
+        for (Date day : this.getDatesFromToday()){
+            options.add(dayCov.format(day));
+        }
+        return options;
     }
     
     private void loadStateFiles(){
         
+    }
+    
+    public ScreenResult begin(DispenserHardware dispHard){
+        this.loadStateFiles();
+        return ScreenResult.continueScreen;
+    }
+    
+    public String getTitle(){
+        return this.title;
     }
     
     //Construct

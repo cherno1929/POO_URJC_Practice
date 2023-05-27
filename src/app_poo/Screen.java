@@ -14,10 +14,10 @@ import java.util.List;
 public class Screen {
     
     //Atributes
-    private DispenserManager dispenserManager;
-    private String title;
-    private String description;
-    private String image;
+    protected DispenserManager dispenserManager;
+    protected String title = "";
+    private String description = "";
+    private String image = "";
     private List<String> options;
     public ScreenMode mode;
     
@@ -61,7 +61,7 @@ public class Screen {
     }
 
     public List<String> getOptions() {
-        return options;
+        return null;
     }
 
     public ScreenMode getMode() {

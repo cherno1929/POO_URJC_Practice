@@ -14,7 +14,8 @@ public class TheaterApp {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.println("Hello this is my new project");
+        TheaterManager thManag = new TheaterManager();
+        thManag.run();
     }
     
 }

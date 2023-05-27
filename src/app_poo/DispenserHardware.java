@@ -10,4 +10,23 @@ package app_poo;
  */
 public class DispenserHardware {
     
+    private sienens.TheaterTicketDispenser dispenser = new sienens.TheaterTicketDispenser();
+    
+    //Methods
+    
+    public void printTicket(String ticket){
+        
+    }
+    
+    public void retainCreditCard(boolean bloq){
+        this.dispenser.retainCreditCard(bloq);
+    }
+    
+    public void extpelCreditCard(){
+        this.dispenser.expelCreditCard(0);
+    }
+    
+    public long getCardNumber() {
+        return this.dispenser.getCardNumber();
+    }
 }
