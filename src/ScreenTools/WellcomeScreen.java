@@ -54,6 +54,7 @@ public class WellcomeScreen extends Screen{
         return options;
     }
     
+    
     public ScreenResult end(){
         return ScreenResult.continueScreen;
     }
@@ -73,8 +74,8 @@ public class WellcomeScreen extends Screen{
     public WellcomeScreen(Theater theater , DispenserManager dispenserManager, String title, ScreenMode mode) {
         super(dispenserManager, title, mode);
         this.theater = theater;
-        this.idiomSelect = new IdiomSelectionScreen(dispenserManager, "Seleccion de idioma", mode);
-        this.dataSelect = new DataSelectionScreen(theater, dispenserManager, "Selección de fecha de representacion", mode);
+        this.idiomSelect = new IdiomSelectionScreen(dispenserManager, "Seleccion de idioma", ScreenMode.optionsMode);
+        this.dataSelect = new DataSelectionScreen(theater, dispenserManager, "Selección de fecha de representacion", ScreenMode.optionsMode);
         
     }
     

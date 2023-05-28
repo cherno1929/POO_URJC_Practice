@@ -22,7 +22,7 @@ public class DispenserManager {
     //Methods
     public void showScreen(int time, Screen screen){
         ScreenResult result = screen.begin(dispenserHardw);
-        this.dispenser.setMenuMode();
+        this.setMode(screen);
         
         while (result == ScreenResult.continueScreen) {
             this.dispenser.setTitle(screen.getTitle());
@@ -37,6 +37,16 @@ public class DispenserManager {
             } else {
                 result = screen.optionButtonPressed(this.dispenserHardw, data);
             }
+        }
+    }
+    
+    private void setMode(Screen screen){
+        if (screen.getMode() == ScreenMode.optionsMode) {
+            this.dispenser.setMenuMode();
+        } else if (screen.getMode() == ScreenMode.messageMode) {
+            this.dispenser.setMessageMode();
+        } else if (screen.getMode() == ScreenMode.theaterMode) {
+            this.dispenser.setTheaterMode(0, 0);
         }
     }
     

@@ -5,9 +5,11 @@
 package ScreenTools;
 
 import TheaterTools.TheaterAreaState;
+import TheaterTools.TheatherArea;
 import app_poo.DispenserManager;
 import app_poo.Screen;
 import app_poo.ScreenMode;
+import java.util.List;
 
 /**
  *
@@ -15,17 +17,21 @@ import app_poo.ScreenMode;
  */
 public class AreaSelectionScreen extends Screen{
     
+    
     private TheaterAreaState selectArea;
     private SeatSelectionScreen seatSelector;
-
-    public AreaSelectionScreen(DispenserManager dispenserManager, String title, ScreenMode mode) {
-        super(dispenserManager, title, mode);
-    }
     
     //Methods
     private void displayArea(TheaterAreaState area){
         
     }
     
+    
+    //Construct
+    public AreaSelectionScreen(List<TheatherArea> thArea, DispenserManager dispenserManager, String title, ScreenMode mode) {
+        super(dispenserManager, title, mode);
+        
+        this.seatSelector = new SeatSelectionScreen(dispenserManager, title, ScreenMode.theaterMode);
+    }
     
 }

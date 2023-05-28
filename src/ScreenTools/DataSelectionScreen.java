@@ -44,6 +44,14 @@ public class DataSelectionScreen extends Screen{
         return days;
     }
     
+    public ScreenResult end(DispenserHardware harw) {
+        this.dispenserManager.showScreen(30, this.areaScreen);
+        return ScreenResult.exitScreen;
+    }
+    
+    public ScreenResult optionButtonPressed(DispenserHardware hardw, char option){
+        return this.end(hardw);
+    }
     
     public List<String> getOptions(){
         List<String> options = new ArrayList<String>();
@@ -70,6 +78,7 @@ public class DataSelectionScreen extends Screen{
     //Construct
     public DataSelectionScreen(Theater theater, DispenserManager dispenserManager, String title, ScreenMode mode) {
         super(dispenserManager, title, mode);
+        this.areaScreen = new AreaSelectionScreen(theater.getAreas(),dispenserManager, title, ScreenMode.optionsMode);
     }
     
 }

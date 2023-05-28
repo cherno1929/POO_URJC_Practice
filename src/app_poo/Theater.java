@@ -35,6 +35,10 @@ public class Theater {
        return this.theaterAreas.get(pos);
    }
    
+   public List<TheatherArea> getAreas(){
+       return this.theaterAreas;
+   }
+   
    private void read(String dir){
         try {
             BufferedReader readerTheater = new BufferedReader(new FileReader(dir));
