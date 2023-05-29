@@ -7,6 +7,9 @@ package TheaterTools;
 import app_poo.Theater;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -14,7 +17,7 @@ import java.util.List;
  */
 public class TheaterState implements Serializable{
     private LocalDateTime date;
-    private List<TheaterAreaState> areas;
+    private List<TheaterAreaState> areas = new ArrayList<TheaterAreaState>();
     
     //Methods
 
@@ -29,12 +32,27 @@ public class TheaterState implements Serializable{
     public int getNumAreas(){
         return this.areas.size();
     }
+
+    public List<TheaterAreaState> getAreas() {
+        return areas;
+    }
+
+    public void setAreas(TheaterAreaState areas) {
+        this.areas.add(areas);
+    }
+    
+    
     
     //Constructor
 
     public TheaterState(Theater theater, LocalDateTime date) {
         this.date = date;
     }
-    
+
+    public void setAreaState(TheaterAreaState areaState) {
+        this.areas.add(areaState);
+    }
+
+
     
 }

@@ -31,7 +31,7 @@ public class TheatherArea {
         return this.seats[row][col];
     }
     
-    private void read(String fileName){
+    public void read(String fileName){
         try {
             BufferedReader reader = new BufferedReader(new FileReader(fileName));
             String line;
@@ -66,6 +66,8 @@ public class TheatherArea {
         }
     }
     
+    
+    
     public int getRows() {
         return rows;
     }
@@ -94,6 +96,11 @@ public class TheatherArea {
         String[] arrPrecio = arrData[1].split("€");
         this.prize = Integer.parseInt(arrPrecio[0]);
         read(this.locationZone + arrData[2]);
+    }
+    
+    public TheatherArea(String data, String nom) { 
+        this.name = nom;
+        read(data);
     }
     
 }

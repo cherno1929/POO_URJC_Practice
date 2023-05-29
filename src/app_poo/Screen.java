@@ -18,7 +18,7 @@ public class Screen {
     protected String title = "";
     private String description = "";
     private String image = "";
-    private List<String> options;
+    protected List<String> options;
     public ScreenMode mode;
     
     //Methods
@@ -78,6 +78,14 @@ public class Screen {
 
     public void setOptions(List<String> options) {
         this.options = options;
+    }
+    
+    public int getRows(){
+        return 0;
+    }
+    
+    public int getCols(){
+        return 0;
     }
     
     //Constrct
