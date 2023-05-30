@@ -21,6 +21,7 @@ public class DispenserManager {
     private TheaterTicketDispenser dispenser = new TheaterTicketDispenser();
     private DispenserHardware dispenserHardw;
     
+    
     //Methods
     public void showScreen(int time, Screen screen){
         ScreenResult result = screen.begin(dispenserHardw);

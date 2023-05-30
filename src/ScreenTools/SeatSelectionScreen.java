@@ -4,16 +4,20 @@
  */
 package ScreenTools;
 
-import TheaterTools.SeatState;
 import TheaterTools.TheaterAreaState;
-import TheaterTools.TheatherArea;
 import app_poo.DispenserHardware;
 import app_poo.DispenserManager;
 import app_poo.Screen;
 import app_poo.ScreenMode;
 import app_poo.ScreenResult;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -73,7 +77,7 @@ public class SeatSelectionScreen extends Screen{
         }else if (option == 'B') {
             if (this.n_Butacas > 0) {
                 
-                this.paySc = new PaymentScreen(this.tk,this.computePrice(),"",dispenserManager, "Inserte tarjeta", ScreenMode.messageMode);
+                this.paySc = new PaymentScreen(this,this.tk,this.computePrice(),"",dispenserManager, "Inserte tarjeta", ScreenMode.messageMode);
                 this.dispenserManager.showScreen(30, this.paySc);
                 return ScreenResult.exitScreen;
             } else{
@@ -91,11 +95,24 @@ public class SeatSelectionScreen extends Screen{
         return ScreenResult.continueScreen;
     }
     
+    public void modifyZone(Ticket tkr) {
+        File fileToUpdate = new File(tkr.locationZone);
+        try {
+            BufferedWriter writerTk = new BufferedWriter(new FileWriter(fileToUpdate));
+            String newTxt = DataSelectionScreen.transformSeat_To_String(tkr.actualZoneState);
+            writerTk.write(newTxt);
+            writerTk.close();
+        } catch (IOException ex) {
+            Logger.getLogger(SeatSelectionScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     //Constr
     
     public SeatSelectionScreen(Ticket tk,TheaterAreaState areaSt ,DispenserManager dispenserManager, String title, ScreenMode mode) {
         super(dispenserManager, title, mode);
         this.areaSt = areaSt;
+        tk.actualZoneState = areaSt;
         tk.locationZone = areaSt.getLocation();
         this.tk = tk;
     }

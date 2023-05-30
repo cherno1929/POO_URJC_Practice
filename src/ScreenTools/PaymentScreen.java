@@ -23,8 +23,8 @@ import urjc.UrjcBankServer;
 public class PaymentScreen extends Screen{
     
     private UrjcBankServer bank = new UrjcBankServer();
+    private SeatSelectionScreen selctSrc;
     private int price;
-    private Ticket ticket;
     
     //Methods
 
@@ -52,6 +52,7 @@ public class PaymentScreen extends Screen{
             try {
                 this.bank.doOperation(creditCard, price);
                 this.dispenserManager.printScreen(this.tk.getInfo());
+                this.selctSrc.modifyZone(this.tk);
                 return ScreenResult.exitScreen;
             } catch (CommunicationException ex) {
                 Logger.getLogger(PaymentScreen.class.getName()).log(Level.SEVERE, null, ex);
@@ -84,12 +85,12 @@ public class PaymentScreen extends Screen{
     
     //Costruct
 
-    public PaymentScreen(Ticket tk,int amount, String resume,DispenserManager dispenserManager, String title, ScreenMode mode) {
+    public PaymentScreen(SeatSelectionScreen selctScr,Ticket tk,int amount, String resume,DispenserManager dispenserManager, String title, ScreenMode mode) {
         super(dispenserManager, title, mode);
         tk.prize = amount;
         this.tk = tk;
         this.price = amount;
-        
+        this.selctSrc = selctScr;
     }
     
      

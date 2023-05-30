@@ -4,6 +4,7 @@
  */
 package ScreenTools;
 
+import TheaterTools.TheaterAreaState;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ public class Ticket {
     public List<Integer> cols = new ArrayList<Integer>();
     public String title;
     public String zona;
+    public TheaterAreaState actualZoneState;
     public Date fecha;
     public int prize;
     public String locationZone;

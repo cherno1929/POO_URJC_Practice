@@ -137,7 +137,7 @@ public class DataSelectionScreen extends Screen{
         }
     }
     
-    private String transformSeat_To_String(TheaterAreaState areaState) {
+    public static String transformSeat_To_String(TheaterAreaState areaState) {
         String text = "";
         for (int i = 0; i < areaState.getRows(); i++) {
             int j = 0;
