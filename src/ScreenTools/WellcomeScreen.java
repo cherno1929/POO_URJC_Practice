@@ -51,6 +51,9 @@ public class WellcomeScreen extends Screen{
         List<String> options = new ArrayList<String>();
         options.add(this.idiomSelect.getTitle());
         options.add(this.dataSelect.getTitle());
+        for (int i = 0; i < 4; i++){
+            options.add("");
+        }
         return options;
     }
     
@@ -64,6 +67,7 @@ public class WellcomeScreen extends Screen{
         if (opt == 'A') {
             
         } else if (opt == 'B') {
+            this.tk.title = this.play.getTitle();
             this.dispenserManager.showScreen(30, this.dataSelect);
         }
         return result;
@@ -73,10 +77,10 @@ public class WellcomeScreen extends Screen{
     
     public WellcomeScreen(Theater theater , DispenserManager dispenserManager, String title, ScreenMode mode) {
         super(dispenserManager, title, mode);
+        this.tk = new Ticket();
         this.theater = theater;
         this.idiomSelect = new IdiomSelectionScreen(dispenserManager, "Seleccion de idioma", ScreenMode.optionsMode);
-        this.dataSelect = new DataSelectionScreen(theater, dispenserManager, "Selección de fecha de representacion", ScreenMode.optionsMode);
-        
+        this.dataSelect = new DataSelectionScreen(this.tk,theater, dispenserManager, "Selección de fecha de representacion", ScreenMode.optionsMode);
     }
     
 }

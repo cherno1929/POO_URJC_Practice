@@ -39,7 +39,7 @@ public class SeatSelectionScreen extends Screen{
     } 
     
     private int computePrice(){
-        TheatherArea areaPrice = new TheatherArea(title);
+        this.areaSt.searchPrice();
         return this.n_Butacas * this.areaSt.getPrice();
     }
     
@@ -72,7 +72,8 @@ public class SeatSelectionScreen extends Screen{
             return ScreenResult.exitScreen;
         }else if (option == 'B') {
             if (this.n_Butacas > 0) {
-                this.paySc = new PaymentScreen(this.computePrice(),"",dispenserManager, "Pantalla de Pago", mode);
+                
+                this.paySc = new PaymentScreen(this.tk,this.computePrice(),"",dispenserManager, "Inserte tarjeta", ScreenMode.messageMode);
                 this.dispenserManager.showScreen(30, this.paySc);
                 return ScreenResult.exitScreen;
             } else{
@@ -81,6 +82,8 @@ public class SeatSelectionScreen extends Screen{
         }else {
             int row = (byte)((option & 0xFF00) >> 8);
             int col = (byte)(option & 0xFF);
+            this.tk.rows.add(row);
+            this.tk.cols.add(col);
             this.dispenserManager.markSear(row, col);
             this.n_Butacas++;
             this.areaSt.fillSeat(row - 1, col - 1);
@@ -90,9 +93,11 @@ public class SeatSelectionScreen extends Screen{
     
     //Constr
     
-    public SeatSelectionScreen(TheaterAreaState areaSt ,DispenserManager dispenserManager, String title, ScreenMode mode) {
+    public SeatSelectionScreen(Ticket tk,TheaterAreaState areaSt ,DispenserManager dispenserManager, String title, ScreenMode mode) {
         super(dispenserManager, title, mode);
         this.areaSt = areaSt;
+        tk.locationZone = areaSt.getLocation();
+        this.tk = tk;
     }
     
     

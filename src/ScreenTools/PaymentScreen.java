@@ -9,6 +9,11 @@ import app_poo.DispenserManager;
 import app_poo.Screen;
 import app_poo.ScreenMode;
 import app_poo.ScreenResult;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.naming.CommunicationException;
 import urjc.UrjcBankServer;
 
 /**
@@ -19,6 +24,7 @@ public class PaymentScreen extends Screen{
     
     private UrjcBankServer bank = new UrjcBankServer();
     private int price;
+    private Ticket ticket;
     
     //Methods
 
@@ -26,8 +32,34 @@ public class PaymentScreen extends Screen{
         return null;
     }
     
+    public List<String> getOptions(){
+        List<String> options = new ArrayList<String>();
+        
+        options.add("Salir");
+        options.add("Terminar");
+       
+        return options;
+    }
+    
+    
     public ScreenResult creditCardDetected(DispenserHardware d){
         return null;     
+    }
+    
+    public ScreenResult optionButtonPressed(DispenserHardware dispHardw, char option) {
+        if (option == '1') {
+            long creditCard = this.dispenserManager.retainCard();
+            try {
+                this.bank.doOperation(creditCard, price);
+                this.dispenserManager.printScreen(this.tk.getInfo());
+                return ScreenResult.exitScreen;
+            } catch (CommunicationException ex) {
+                Logger.getLogger(PaymentScreen.class.getName()).log(Level.SEVERE, null, ex);
+                return ScreenResult.continueScreen;
+            }
+        } else{
+            return ScreenResult.continueScreen;
+        } 
     }
     
     public int getPrice() {
@@ -38,14 +70,26 @@ public class PaymentScreen extends Screen{
         this.price = price;
     }
     
-    //Costruct
-    public PaymentScreen(DispenserManager dispenserManager, String title, ScreenMode mode) {
-        super(dispenserManager, title, mode);
+    public ScreenResult begin(DispenserHardware dispHardw) {
+        if (this.bank.comunicationAvaiable()) {
+            return ScreenResult.continueScreen;
+        }else{
+            return ScreenResult.exitScreen;
+        }
     }
+    
+    public String getDescription(){
+        return this.tk.getInfo();
+    }
+    
+    //Costruct
 
-    public PaymentScreen(int amount, String resume,DispenserManager dispenserManager, String title, ScreenMode mode) {
+    public PaymentScreen(Ticket tk,int amount, String resume,DispenserManager dispenserManager, String title, ScreenMode mode) {
         super(dispenserManager, title, mode);
+        tk.prize = amount;
+        this.tk = tk;
         this.price = amount;
+        
     }
     
      

@@ -4,6 +4,7 @@
  */
 package app_poo;
 
+import ScreenTools.Ticket;
 import TheaterTools.TheaterAreaState;
 import java.util.List;
 
@@ -20,6 +21,7 @@ public class Screen {
     private String image = "";
     protected List<String> options;
     public ScreenMode mode;
+    public Ticket tk;
     
     //Methods
     public ScreenResult optionButtonPressed(DispenserHardware d, char c){

@@ -81,8 +81,9 @@ public class DataSelectionScreen extends Screen{
         
         List<Date> keys = new ArrayList<Date>(this.schedule.keySet());
         Collections.sort(keys);
-        
-        this.areaScreen = new AreaSelectionScreen(this.schedule.get(keys.get(opt)), dispenserManager, "Seleccione un Area", ScreenMode.optionsMode);
+        this.tk.fecha = keys.get(opt);
+
+        this.areaScreen = new AreaSelectionScreen(this.tk,this.schedule.get(keys.get(opt)), dispenserManager, "Seleccione un Area", ScreenMode.optionsMode);
         this.dispenserManager.showScreen(30, areaScreen);
         return this.end(hardw);
     }
@@ -126,6 +127,7 @@ public class DataSelectionScreen extends Screen{
         try {
             File crateArea = new File(fileLocation);
             if (crateArea.createNewFile()) {
+                areaState.setLocation(crateArea.getAbsolutePath());
                 BufferedWriter contentWriter = new BufferedWriter(new FileWriter(crateArea));
                 contentWriter.write(fileContnt);
                 contentWriter.close();
@@ -159,6 +161,7 @@ public class DataSelectionScreen extends Screen{
         for (File reservt : reserveFile.listFiles()) {
             TheatherArea thArea = new TheatherArea(reservt.getAbsolutePath(), reservt.getName().substring(0, reservt.getName().length() - 4));
             TheaterAreaState area = new TheaterAreaState(thArea);
+            area.setLocation(reservt.getAbsolutePath());
             areas.setAreaState(area);
         }
         return areas;
@@ -177,6 +180,12 @@ public class DataSelectionScreen extends Screen{
         super(dispenserManager, title, mode);
         this.theatr = theater;
 
+    }
+    
+    public DataSelectionScreen(Ticket tk,Theater theater, DispenserManager dispenserManager, String title, ScreenMode mode) {
+        super(dispenserManager, title, mode);
+        this.theatr = theater;
+        this.tk = tk;
     }
 
     

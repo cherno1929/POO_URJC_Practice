@@ -24,9 +24,9 @@ public class DispenserManager {
     //Methods
     public void showScreen(int time, Screen screen){
         ScreenResult result = screen.begin(dispenserHardw);
-        this.setMode(screen);
         
         while (result == ScreenResult.continueScreen) {
+            this.setMode(screen);
             this.dispenser.setTitle(screen.getTitle());
             this.dispenser.setDescription(screen.getDescription());
             this.dispenser.setImage(screen.getImage());
@@ -40,6 +40,17 @@ public class DispenserManager {
                 result = screen.optionButtonPressed(this.dispenserHardw, data);
             }
         }
+    }
+    
+    public void printScreen(String data){
+        List<String> info = new ArrayList<String>();
+        info.add(data);
+        this.dispenser.print(info);
+    }
+    
+    public long retainCard(){
+        this.dispenser.retainCreditCard(false);
+        return this.dispenser.getCardNumber();
     }
     
     public void setTitle(String title){

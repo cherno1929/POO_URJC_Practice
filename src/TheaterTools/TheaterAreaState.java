@@ -4,6 +4,14 @@
  */
 package TheaterTools;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Cherno
@@ -11,6 +19,8 @@ package TheaterTools;
 public class TheaterAreaState implements Serializable{
     
     private SeatState[][] seatsState;
+    private String locationPrice = "DataFiles\\Theater\\theater.txt";
+    private String location;
     private String name;
     private int cols;
     private int rows;
@@ -18,6 +28,8 @@ public class TheaterAreaState implements Serializable{
     
     //Methods
 
+    
+    
     public SeatState getSeatsState(int row, int col) {
         return this.seatsState[row][col];
     }
@@ -54,6 +66,38 @@ public class TheaterAreaState implements Serializable{
         this.price = price;
     }
     
+    public void searchPrice() {
+        File locatPr = new File(this.locationPrice);
+        try {
+            BufferedReader priceReader = new BufferedReader(new FileReader(locatPr));
+            String line;
+            line = priceReader.readLine();
+            line = priceReader.readLine();
+            while((line = priceReader.readLine()) != null) {
+                String[]  arr = line.split(";");
+                String[] arrName = arr[0].split(":");
+                if (arrName[1].equals( this.name)) {
+                    String[] arrPr = arr[1].split("€");
+                    this.price = Integer.parseInt(arrPr[0]);
+                    break;                }
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(TheaterAreaState.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void fillSeat(int row, int col) {
+        this.seatsState[row][col] = SeatState.occupied;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+    
     
     
     //Contructor
@@ -66,8 +110,8 @@ public class TheaterAreaState implements Serializable{
         this.seatsState = area.getSeats();
     }
 
-    public void fillSeat(int row, int col) {
-        this.seatsState[row][col] = SeatState.occupied;
-    }
+    
+
+    
     
 }
