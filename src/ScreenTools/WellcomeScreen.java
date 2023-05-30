@@ -77,7 +77,7 @@ public class WellcomeScreen extends Screen{
     
     public WellcomeScreen(Theater theater , DispenserManager dispenserManager, String title, ScreenMode mode) {
         super(dispenserManager, title, mode);
-        this.tk = new Ticket();
+        this.tk = new Ticket(this.dispenserManager.getTranslator());
         this.theater = theater;
         this.idiomSelect = new IdiomSelectionScreen(dispenserManager, "Selección de idioma", ScreenMode.optionsMode);
         this.dataSelect = new DataSelectionScreen(this.tk,theater, dispenserManager, "Selección de fecha de representación", ScreenMode.optionsMode);

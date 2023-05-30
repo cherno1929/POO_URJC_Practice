@@ -5,6 +5,7 @@
 package ScreenTools;
 
 import TheaterTools.TheaterAreaState;
+import app_poo.TranslatorManager;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -28,23 +29,28 @@ public class Ticket {
     public Date fecha;
     public int prize;
     public String locationZone;
+    public TranslatorManager tMnag;
+
+    Ticket(TranslatorManager translator) {
+        this.tMnag = translator;
+    }
 
     public String getInfo() {
         String info = "";
         
-        info += "Entrada para : " + this.title + "\n";
-        info += "Zona : " +  this.zona + "\n";
+        info += this.tMnag.translate("Entrada para")+" : " + this.tMnag.translate(this.title) + "\n";
+        info += this.tMnag.translate("Zona") +" : " +  this.tMnag.translate(this.zona ) + "\n";
 
         for (int i = 0; i < this.cols.size(); i++){
-            info += "Asiento nº "+ this.cols.get(i) +"; Fila : " + this.rows.get(i) + "\n";
+            info += this.tMnag.translate("Asiento")+" nº "+ this.cols.get(i) +" - "+this.tMnag.translate("Fila")+" : " + this.rows.get(i) + "\n";
         }
         
         DateFormat dayForm = new SimpleDateFormat("yyyy-MM-dd hh-mm");
-        String fechDay = "Fecha : " + dayForm.format(fecha);
+        String fechDay = this.tMnag.translate("Fecha")+ " : " + dayForm.format(fecha);
         
         info += fechDay + "\n";
         
-        info += "Precio : " + this.prize +"€"+ "\n";
+        info += this.tMnag.translate("Precio") + " : " + this.prize +"€"+ "\n";
         
         return info;
     }
