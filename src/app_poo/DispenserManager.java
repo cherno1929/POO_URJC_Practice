@@ -28,8 +28,8 @@ public class DispenserManager {
         
         while (result == ScreenResult.continueScreen) {
             this.setMode(screen);
-            this.dispenser.setTitle(screen.getTitle());
-            this.dispenser.setDescription(screen.getDescription());
+            this.dispenser.setTitle(this.translator.translate(screen.getTitle()));
+            this.dispenser.setDescription(this.translator.translate(screen.getDescription()));
             this.dispenser.setImage(screen.getImage());
             
             this.getOptions(screen);
@@ -55,7 +55,7 @@ public class DispenserManager {
     }
     
     public void setTitle(String title){
-        this.dispenser.setTitle(title);
+        this.dispenser.setTitle(this.translator.translate(title));
     }
     
     private void setMode(Screen screen){
@@ -73,7 +73,7 @@ public class DispenserManager {
 
             int i = 0;
             for (String option : screen.getOptions()){
-                this.dispenser.setOption(i, option);
+                this.dispenser.setOption(i, this.translator.translate(option));
                  i++;
             }
         
@@ -97,11 +97,28 @@ public class DispenserManager {
             }
         }
     }
+
+    public TranslatorManager getTranslator() {
+        return translator;
+    }
+
+    public void setTranslator(TranslatorManager translator) {
+        this.translator = translator;
+    }
+    
+    
     
     public DispenserHardware getHardware(){
         return this.dispenserHardw;
     }
+    
+    public void asignIdiom(String opt) {
+        this.translator.setActiveIdiom(opt);
+    }
+    
     //Constructor
+
+    
 
    
     

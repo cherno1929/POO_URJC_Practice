@@ -65,7 +65,7 @@ public class WellcomeScreen extends Screen{
     public ScreenResult optionButtonPressed(DispenserHardware dispHard, char opt){
         ScreenResult result = ScreenResult.continueScreen;
         if (opt == 'A') {
-            
+            this.dispenserManager.showScreen(30, this.idiomSelect);
         } else if (opt == 'B') {
             this.tk.title = this.play.getTitle();
             this.dispenserManager.showScreen(30, this.dataSelect);
@@ -79,8 +79,8 @@ public class WellcomeScreen extends Screen{
         super(dispenserManager, title, mode);
         this.tk = new Ticket();
         this.theater = theater;
-        this.idiomSelect = new IdiomSelectionScreen(dispenserManager, "Seleccion de idioma", ScreenMode.optionsMode);
-        this.dataSelect = new DataSelectionScreen(this.tk,theater, dispenserManager, "Selección de fecha de representacion", ScreenMode.optionsMode);
+        this.idiomSelect = new IdiomSelectionScreen(dispenserManager, "Selección de idioma", ScreenMode.optionsMode);
+        this.dataSelect = new DataSelectionScreen(this.tk,theater, dispenserManager, "Selección de fecha de representación", ScreenMode.optionsMode);
     }
     
 }

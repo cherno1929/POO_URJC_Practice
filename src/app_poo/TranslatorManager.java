@@ -17,9 +17,33 @@ public class TranslatorManager {
     private Map<String,Translator> translatorMap = new HashMap<>();
     private String activeIdiom = "Castellano";
     private String locationIdioms = "DataFiles//Idioms";
+
+    public String getActiveIdiom() {
+        return activeIdiom;
+    }
+
+    public void setActiveIdiom(String activeIdiom) {
+        this.activeIdiom = activeIdiom;
+    }
+
+    public Map<String, Translator> getTranslatorMap() {
+        return translatorMap;
+    }
+
+    public void setTranslatorMap(Map<String, Translator> translatorMap) {
+        this.translatorMap = translatorMap;
+    }
+    
+    
     
     public String translate(String msg){
-        return null;
+        if (msg == null){
+            return "";
+        }else if (msg.contains("-")){
+             return msg;
+        }else{
+            return this.translatorMap.get(this.activeIdiom).translate(msg);
+        }
     }
 
     //Construct
@@ -28,7 +52,9 @@ public class TranslatorManager {
         File idiomFiles = new File(this.locationIdioms);
         for(File idiomFil : idiomFiles.listFiles()){
             Translator idiom = new Translator(idiomFil.getPath());
-            this.translatorMap.put(idiomFil.getName(), idiom);
+            String nameIdiom = idiomFil.getName();
+            nameIdiom = nameIdiom.substring(0,nameIdiom.length()-4);
+            this.translatorMap.put(nameIdiom, idiom);
         }
         
     }

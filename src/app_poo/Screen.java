@@ -17,7 +17,7 @@ public class Screen {
     //Atributes
     protected DispenserManager dispenserManager;
     protected String title = "";
-    private String description = "";
+    private String description = " ";
     private String image = "";
     protected List<String> options;
     public ScreenMode mode;

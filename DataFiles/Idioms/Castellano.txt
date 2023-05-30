@@ -1,0 +1,25 @@
+El Rey Leon:El Rey Leon
+Producido por Stage Entertainment, El Rey León es la mayor producción musical jamás representada en España. Apto para toda la familia, es una experiencia única que atrapa de principio a fin y que, tal y como ya han hecho más de 100 millones de personas en todo el mundo, hay que vivir, al menos, una vez en la vida. Por su espectacularidad, por su belleza, por la emoción que es capaz de transmitir...:Producido por Stage Entertainment, El Rey León es la mayor producción musical jamás representada en España. Apto para toda la familia, es una experiencia única que atrapa de principio a fin y que, tal y como ya han hecho más de 100 millones de personas en todo el mundo, hay que vivir, al menos, una vez en la vida. Por su espectacularidad, por su belleza, por la emoción que es capaz de transmitir...
+Selección de idioma:Selección de idioma
+Selección de fecha de representación:Selección de fecha de representación
+Seleccione un Area:Seleccione un Area
+Anfiteatro1:Anfiteatro1
+Anfiteatro2:Anfiteatro2
+Palco1:Palco1
+Palco2:Palco2
+Platea:Platea
+Salir:Salir
+Terminar:Terminar
+Seleccione sitio:Seleccione sitio
+Entrada para:Entrada para
+Zona:Zona
+Asiento:Asiento
+Fila:Fila
+Fecha:Fecha
+Precio:Precio
+ : 
+Castellano:Castellano
+Catalán:Catalán
+Euskera:Euskera
+Ingles:Ingles
+Inserte tarjeta:Inserte tarjeta
