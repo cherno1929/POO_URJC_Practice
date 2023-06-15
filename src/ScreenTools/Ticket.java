@@ -62,12 +62,17 @@ public class Ticket {
     }
     
     private String getCanceledSeats(){
-        String info_Aux = "Cancelados :: \n";
+        String info_Aux = "------------\n";
         
-        for (String key : this.nonSelectedCol.keySet()) {
+        if (this.nonSelectedCol.size() > 0){
+            info_Aux += "Cancelados :: \n";
+            for (String key : this.nonSelectedCol.keySet()) {
+                info_Aux += "Zona " + key + "\n";
             for (int i = 0; i < this.nonSelectedCol.get(key).size(); i++) {
                 info_Aux += this.tMnag.translate("Asiento")+" nº "+ this.nonSelectedCol.get(key).get(i) +" - "+this.tMnag.translate("Fila")+" : " + this.nonSelectedRow.get(key).get(i) + "\n";
             }
+        }
+            info_Aux += "------------\n";
         }
         
         return info_Aux;

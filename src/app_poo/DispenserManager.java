@@ -35,7 +35,6 @@ public class DispenserManager {
             this.getOptions(screen);
             
             char data = this.dispenser.waitEvent(30);
-            System.out.println(data);
             result = screen.optionButtonPressed(this.dispenserHardw, data);
         }
     }
