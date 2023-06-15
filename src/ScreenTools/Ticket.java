@@ -67,7 +67,7 @@ public class Ticket {
         if (this.nonSelectedCol.size() > 0){
             info_Aux += "Cancelados :: \n";
             for (String key : this.nonSelectedCol.keySet()) {
-                info_Aux += "Zona " + key + "\n";
+                info_Aux += "Zona :: " + key + "\n";
             for (int i = 0; i < this.nonSelectedCol.get(key).size(); i++) {
                 info_Aux += this.tMnag.translate("Asiento")+" nº "+ this.nonSelectedCol.get(key).get(i) +" - "+this.tMnag.translate("Fila")+" : " + this.nonSelectedRow.get(key).get(i) + "\n";
             }

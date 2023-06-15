@@ -4,6 +4,7 @@
  */
 package ScreenTools;
 
+import TheaterTools.SeatState;
 import TheaterTools.TheaterAreaState;
 import app_poo.DispenserHardware;
 import app_poo.DispenserManager;
@@ -77,8 +78,7 @@ public class SeatSelectionScreen extends Screen{
             if (option == 'A') {
                 dealNonSelected();
             }
-            this.tk.cols = new ArrayList<Integer>();
-            this.tk.rows = new ArrayList<Integer>();
+            restoreArea();
             return ScreenResult.exitScreen;
         }else if (option == 'B') {
             if (this.n_Butacas > 0) {
@@ -92,13 +92,25 @@ public class SeatSelectionScreen extends Screen{
         }else {
             int row = (byte)((option & 0xFF00) >> 8);
             int col = (byte)(option & 0xFF);
-            this.tk.rows.add(row);
-            this.tk.cols.add(col);
-            this.dispenserManager.markSear(row, col);
-            this.n_Butacas++;
-            this.areaSt.fillSeat(row - 1, col - 1);
+            if (this.areaSt.getSeatsState(row - 1, col - 1) == SeatState.free) {
+                this.tk.rows.add(row);
+                this.tk.cols.add(col);
+                this.dispenserManager.markSear(row, col);
+                this.n_Butacas++;
+                this.areaSt.fillSeat(row - 1, col - 1);
+            }
         }
         return ScreenResult.continueScreen;
+    }
+    
+    private void restoreArea() {
+        
+        for (int i = 0; i < tk.cols.size(); i++) {
+            this.areaSt.setSeat(tk.cols.get(i) - 1, tk.rows.get(i) - 1, SeatState.free);
+        }
+        
+        this.tk.cols = new ArrayList<Integer>();
+        this.tk.rows = new ArrayList<Integer>();
     }
     
     private void dealNonSelected() {
