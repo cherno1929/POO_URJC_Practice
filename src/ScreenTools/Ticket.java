@@ -11,6 +11,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 
 
@@ -23,6 +25,8 @@ public class Ticket {
     
     public List<Integer> rows = new ArrayList<Integer>();
     public List<Integer> cols = new ArrayList<Integer>();
+    public Map<String,List<Integer>> nonSelectedRow = new TreeMap<String,List<Integer>>();
+    public Map<String,List<Integer>> nonSelectedCol = new TreeMap<String,List<Integer>>();
     public String title;
     public String zona;
     public TheaterAreaState actualZoneState;
@@ -45,6 +49,8 @@ public class Ticket {
             info += this.tMnag.translate("Asiento")+" nº "+ this.cols.get(i) +" - "+this.tMnag.translate("Fila")+" : " + this.rows.get(i) + "\n";
         }
         
+        info += getCanceledSeats();
+        
         DateFormat dayForm = new SimpleDateFormat("yyyy-MM-dd hh-mm");
         String fechDay = this.tMnag.translate("Fecha")+ " : " + dayForm.format(fecha);
         
@@ -53,6 +59,18 @@ public class Ticket {
         info += this.tMnag.translate("Precio") + " : " + this.prize +"€"+ "\n";
         
         return info;
+    }
+    
+    private String getCanceledSeats(){
+        String info_Aux = "Cancelados :: \n";
+        
+        for (String key : this.nonSelectedCol.keySet()) {
+            for (int i = 0; i < this.nonSelectedCol.get(key).size(); i++) {
+                info_Aux += this.tMnag.translate("Asiento")+" nº "+ this.nonSelectedCol.get(key).get(i) +" - "+this.tMnag.translate("Fila")+" : " + this.nonSelectedRow.get(key).get(i) + "\n";
+            }
+        }
+        
+        return info_Aux;
     }
     
 }

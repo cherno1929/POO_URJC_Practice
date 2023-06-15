@@ -15,6 +15,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -73,6 +74,11 @@ public class SeatSelectionScreen extends Screen{
     
     public ScreenResult optionButtonPressed(DispenserHardware hardw, char option){
         if (option == 'A' || option == '0') {
+            if (option == 'A') {
+                dealNonSelected();
+            }
+            this.tk.cols = new ArrayList<Integer>();
+            this.tk.rows = new ArrayList<Integer>();
             return ScreenResult.exitScreen;
         }else if (option == 'B') {
             if (this.n_Butacas > 0) {
@@ -93,6 +99,16 @@ public class SeatSelectionScreen extends Screen{
             this.areaSt.fillSeat(row - 1, col - 1);
         }
         return ScreenResult.continueScreen;
+    }
+    
+    private void dealNonSelected() {
+        if (this.tk.nonSelectedCol.containsKey(this.areaSt.getName())) {
+            tk.nonSelectedCol.get(this.areaSt.getName()).addAll(tk.cols);
+            tk.nonSelectedRow.get(this.areaSt.getName()).addAll(tk.rows);
+        }else{
+            tk.nonSelectedCol.put(this.areaSt.getName(), tk.cols);
+            tk.nonSelectedRow.put(this.areaSt.getName(), tk.rows);
+        }
     }
     
     public void modifyZone(Ticket tkr) {
@@ -116,6 +132,8 @@ public class SeatSelectionScreen extends Screen{
         tk.locationZone = areaSt.getLocation();
         this.tk = tk;
     }
+
+    
     
     
 }
