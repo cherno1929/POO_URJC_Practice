@@ -106,7 +106,7 @@ public class SeatSelectionScreen extends Screen{
     private void restoreArea() {
         
         for (int i = 0; i < tk.cols.size(); i++) {
-            this.areaSt.setSeat(tk.cols.get(i) - 1, tk.rows.get(i) - 1, SeatState.free);
+            this.areaSt.setSeat(tk.rows.get(i) - 1, tk.cols.get(i) - 1, SeatState.free);
         }
         
         this.tk.cols = new ArrayList<Integer>();
