@@ -85,8 +85,6 @@ public class SeatSelectionScreen extends Screen{
                 
                 this.paySc = new PaymentScreen(this,this.tk,this.computePrice(),"",dispenserManager, "Inserte tarjeta", ScreenMode.messageMode);
                 this.dispenserManager.showScreen(30, this.paySc);
-                this.tk.cols = new ArrayList<Integer>();
-                this.tk.rows = new ArrayList<Integer>();
                 return ScreenResult.exitScreen;
             } else{
                 this.dispenserManager.setTitle("Usted no tiene ticket");
