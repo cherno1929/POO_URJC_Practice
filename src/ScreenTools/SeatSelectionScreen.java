@@ -72,7 +72,7 @@ public class SeatSelectionScreen extends Screen{
     }
     
     public ScreenResult optionButtonPressed(DispenserHardware hardw, char option){
-        if (option == 'A') {
+        if (option == 'A' || option == '0') {
             return ScreenResult.exitScreen;
         }else if (option == 'B') {
             if (this.n_Butacas > 0) {

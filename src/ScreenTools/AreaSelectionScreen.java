@@ -47,8 +47,10 @@ public class AreaSelectionScreen extends Screen{
     public List<String> getOptions(){
         List<String> options = new ArrayList<String>();
         for (TheaterAreaState area : this.selectArea.getAreas()){
-            options.add(area.getName());
+            area.searchPrice();
+            options.add(area.getName() + "💀" + Integer.toString(area.getPrice()));
         }
+        options.add("Salir");
         return options;
     }
     
@@ -57,12 +59,16 @@ public class AreaSelectionScreen extends Screen{
     }
     
     public ScreenResult optionButtonPressed(DispenserHardware dispHard, char option){
+        if (option != '0' && option != 'F') {
         int opt = (int) option;
         opt -= 65;
         this.tk.zona = this.selectArea.getArea(opt).getName();
         this.seatSelector = new SeatSelectionScreen(this.tk,this.selectArea.getArea(opt),dispenserManager, "Seleccione sitio", ScreenMode.theaterMode);
         this.dispenserManager.showScreen(30, this.seatSelector);
         return ScreenResult.exitScreen;
+        }else {
+            return ScreenResult.exitScreen;
+        }
     }
     
     //Construct

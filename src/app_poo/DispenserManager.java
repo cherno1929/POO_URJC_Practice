@@ -35,11 +35,8 @@ public class DispenserManager {
             this.getOptions(screen);
             
             char data = this.dispenser.waitEvent(30);
-            if (data == '0'){
-                result = screen.end(this.dispenserHardw);
-            } else {
-                result = screen.optionButtonPressed(this.dispenserHardw, data);
-            }
+            System.out.println(data);
+            result = screen.optionButtonPressed(this.dispenserHardw, data);
         }
     }
     
@@ -71,11 +68,18 @@ public class DispenserManager {
     
     private void getOptions(Screen screen) {
 
-            int i = 0;
-            for (String option : screen.getOptions()){
+        int i = 0;
+        for (String option : screen.getOptions()){
+            
+            String[] optArr = option.split("💀");
+            if (optArr.length > 1){
+                this.dispenser.setOption(i, this.translator.translate(optArr[0]) + " (" + optArr[1] + "€)");
+            }else {
                 this.dispenser.setOption(i, this.translator.translate(option));
-                 i++;
             }
+
+             i++;
+        }
         
     }
     

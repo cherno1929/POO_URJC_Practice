@@ -76,7 +76,8 @@ public class DataSelectionScreen extends Screen{
     }
     
     public ScreenResult optionButtonPressed(DispenserHardware hardw, char option){
-        int opt = (int) option;
+        if (option != '0' && option != 'E'){
+            int opt = (int) option;
         opt -= 65;
         
         List<Date> keys = new ArrayList<Date>(this.schedule.keySet());
@@ -86,6 +87,9 @@ public class DataSelectionScreen extends Screen{
         this.areaScreen = new AreaSelectionScreen(this.tk,this.schedule.get(keys.get(opt)), dispenserManager, "Seleccione un Area", ScreenMode.optionsMode);
         this.dispenserManager.showScreen(30, areaScreen);
         return this.end(hardw);
+        }else {
+            return ScreenResult.exitScreen;
+        }
     }
     
     public List<String> getOptions(){
@@ -94,6 +98,7 @@ public class DataSelectionScreen extends Screen{
         for (Date day : this.getDatesFromToday()){
             options.add(dayCov.format(day));
         }
+        options.add("Salir");
         return options;
     }
     

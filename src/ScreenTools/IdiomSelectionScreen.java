@@ -34,8 +34,10 @@ public class IdiomSelectionScreen extends Screen{
     }
     
     public ScreenResult optionButtonPressed(DispenserHardware dispH, char option){
-        int opt = ((int) option) - 65;
-        this.dispenserManager.getTranslator().setActiveIdiom(this.options.get(opt));
+        if (option != '0') {
+            int opt = ((int) option) - 65;
+            this.dispenserManager.getTranslator().setActiveIdiom(this.options.get(opt));
+        }
         return ScreenResult.exitScreen;
     }
     

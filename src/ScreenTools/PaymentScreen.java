@@ -47,7 +47,10 @@ public class PaymentScreen extends Screen{
     }
     
     public ScreenResult optionButtonPressed(DispenserHardware dispHardw, char option) {
-        if (option == '1') {
+        
+        if (option == '0' || option == 'A'){
+            return ScreenResult.exitScreen;
+        }else if (option == '1') {
             long creditCard = this.dispenserManager.retainCard();
             try {
                 this.bank.doOperation(creditCard, price);
@@ -60,7 +63,7 @@ public class PaymentScreen extends Screen{
             }
         } else{
             return ScreenResult.continueScreen;
-        } 
+        }
     }
     
     public int getPrice() {
