@@ -45,7 +45,6 @@ public class SeatSelectionScreen extends Screen{
     } 
     
     private int computePrice(){
-        this.areaSt.searchPrice();
         return this.n_Butacas * this.areaSt.getPrice();
     }
     

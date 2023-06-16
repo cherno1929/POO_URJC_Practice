@@ -9,6 +9,15 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -84,6 +93,49 @@ public class TheaterAreaState implements Serializable{
         }
     }
     
+    public LocalDateTime convertToLocalDateTimeViaInstant(Date dateToConvert) {
+        return dateToConvert.toInstant()
+        .atZone(ZoneId.systemDefault())
+        .toLocalDateTime();
+    }
+    
+    
+        
+    public void searchPrice(Date fecha) {
+        LocalDateTime localDay = convertToLocalDateTimeViaInstant(fecha);
+        String dayWeek = localDay.getDayOfWeek().name();
+        File locatPr = new File(this.locationPrice);
+        try {
+            BufferedReader priceReader = new BufferedReader(new FileReader(locatPr));
+            String line;
+            line = priceReader.readLine();
+            line = priceReader.readLine();
+            if (dayWeek == "FRIDAY" || dayWeek == "SATURDAY" || dayWeek == "SUNDAY") {
+                while((line = priceReader.readLine()) != null) {
+                String[]  arr = line.split(";");
+                String[] arrName = arr[0].split(":");
+                if (arrName[1].equals( this.name) && arrName[0].equals("Festivo")) {
+                    String[] arrPr = arr[1].split("€");
+                    this.price = Integer.parseInt(arrPr[0]);
+                    break;                }
+            }
+            } else {
+                while((line = priceReader.readLine()) != null) {
+                String[]  arr = line.split(";");
+                String[] arrName = arr[0].split(":");
+                if (arrName[1].equals( this.name)) {
+                    String[] arrPr = arr[1].split("€");
+                    this.price = Integer.parseInt(arrPr[0]);
+                    break;                }
+            }
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(TheaterAreaState.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+  
+    
+    
     public void fillSeat(int row, int col) {
         this.seatsState[row][col] = SeatState.occupied;
     }
@@ -111,6 +163,8 @@ public class TheaterAreaState implements Serializable{
         this.price = area.getPrize();
         this.seatsState = area.getSeats();
     }
+
+    
 
     
 

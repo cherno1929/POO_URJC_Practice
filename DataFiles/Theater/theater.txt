@@ -5,3 +5,8 @@ Area:Palco2;30€;palco2.txt
 Area:Anfiteatro1;40€;anfiteatro1.txt
 Area:Anfiteatro2;30€;anfiteatro2.txt
 Area:Platea;50€;platea.txt
+Festivo:Palco1;60€;palco1.txt
+Festivo:Palco2;60€;palco2.txt
+Festivo:Anfiteatro1;80€;anfiteatro1.txt
+Festivo:Anfiteatro2;60€;anfiteatro2.txt
+Festivo:Platea;100€;platea.txt

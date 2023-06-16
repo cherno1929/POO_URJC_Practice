@@ -47,7 +47,7 @@ public class AreaSelectionScreen extends Screen{
     public List<String> getOptions(){
         List<String> options = new ArrayList<String>();
         for (TheaterAreaState area : this.selectArea.getAreas()){
-            area.searchPrice();
+            area.searchPrice(tk.fecha);
             options.add(area.getName() + "💀" + Integer.toString(area.getPrice()));
         }
         options.add("Salir");
