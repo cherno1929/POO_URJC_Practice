@@ -39,6 +39,10 @@ public class DispenserManager {
         }
     }
     
+    public void explelCard(){
+        this.dispenser.expelCreditCard(1);
+    }
+    
     public void printScreen(String data){
         List<String> info = new ArrayList<String>();
         info.add(data);
@@ -84,6 +88,10 @@ public class DispenserManager {
     
     public void markSear(int row, int col){
         this.dispenser.markSeat(row, col, 1);
+    }
+    
+    public void disMarkSear(int row, int col){
+        this.dispenser.markSeat(row, col, 2);
     }
     
     private void drawArea(TheaterAreaState thAreaState){

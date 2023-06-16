@@ -22,6 +22,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -67,7 +68,23 @@ public class DataSelectionScreen extends Screen{
     private void asignSchedule(List<Date> days) {
         for (Date day : days) {
             DateFormat formaterDate = new SimpleDateFormat("yyyy-MM-dd");
-            this.schedule.put(day, this.loadStateFiles(this.loacionReservation + formaterDate.format(day)));
+            
+            if (!this.schedule.containsKey(day)) {
+                    try {
+                    this.schedule.put(formaterDate.parse(formaterDate.format(day)), this.loadStateFiles(this.loacionReservation + formaterDate.format(day)));
+                } catch (ParseException ex) {
+                    Logger.getLogger(DataSelectionScreen.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                
+                try {
+                    this.schedule.replace(formaterDate.parse(formaterDate.format(day)), this.loadStateFiles(this.loacionReservation + formaterDate.format(day)));
+                } catch (ParseException ex) {
+                    Logger.getLogger(DataSelectionScreen.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+            }
+            
         }
     }
     
@@ -191,6 +208,10 @@ public class DataSelectionScreen extends Screen{
         super(dispenserManager, title, mode);
         this.theatr = theater;
         this.tk = tk;
+    }
+
+    private void refreshArea() {
+        
     }
 
     

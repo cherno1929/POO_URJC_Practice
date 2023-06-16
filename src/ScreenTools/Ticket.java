@@ -38,6 +38,13 @@ public class Ticket {
     Ticket(TranslatorManager translator) {
         this.tMnag = translator;
     }
+    
+    public void resetTichet(){
+        this.rows = new ArrayList<Integer>();
+        cols = new ArrayList<Integer>();
+        nonSelectedRow = new TreeMap<String,List<Integer>>();
+        nonSelectedCol = new TreeMap<String,List<Integer>>();
+    }
 
     public String getInfo() {
         String info = "";

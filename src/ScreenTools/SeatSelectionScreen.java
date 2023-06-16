@@ -98,10 +98,19 @@ public class SeatSelectionScreen extends Screen{
                 this.dispenserManager.markSear(row, col);
                 this.n_Butacas++;
                 this.areaSt.fillSeat(row - 1, col - 1);
+            } else if (tk.cols.size() > 1) {
+                int i = 0;
+                while (i < tk.cols.size() && (row != tk.rows.get(i) || col != tk.cols.get(i))) {
+                    i++;
+                }
+                if ((i < tk.cols.size()) && row == tk.rows.get(i) && col == tk.cols.get(i)) {
+                    dealDataSeat(row,col,i);
+                }
             }
         }
         return ScreenResult.continueScreen;
     }
+    
     
     private void restoreArea() {
         
@@ -143,9 +152,25 @@ public class SeatSelectionScreen extends Screen{
         tk.actualZoneState = areaSt;
         tk.locationZone = areaSt.getLocation();
         this.tk = tk;
+    } 
+
+    private void dealDataSeat(int row, int col,int i) {
+        if (this.tk.nonSelectedCol.size() == 0) {
+            List<Integer> cols = new ArrayList<Integer>();
+            List<Integer> rows = new ArrayList<Integer>();
+            cols.add(col);
+            rows.add(row);
+            this.tk.nonSelectedCol.put(this.areaSt.getName(),cols);
+            this.tk.nonSelectedRow.put(this.areaSt.getName(),rows);
+        }else {
+            this.tk.nonSelectedCol.get(this.areaSt.getName()).add(this.tk.cols.get(i));
+            this.tk.nonSelectedRow.get(this.areaSt.getName()).add(this.tk.rows.get(i));
+        }
+        this.tk.cols.remove(i);
+        this.tk.rows.remove(i);
+        this.areaSt.unFillSeat(row-1, col-1);
+        this.dispenserManager.disMarkSear(row, col);
     }
 
-    
-    
     
 }

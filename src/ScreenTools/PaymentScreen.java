@@ -56,6 +56,8 @@ public class PaymentScreen extends Screen{
                 this.bank.doOperation(creditCard, price);
                 this.dispenserManager.printScreen(this.tk.getInfo());
                 this.selctSrc.modifyZone(this.tk);
+                this.tk.resetTichet();
+                this.dispenserManager.explelCard();
                 return ScreenResult.exitScreen;
             } catch (CommunicationException ex) {
                 Logger.getLogger(PaymentScreen.class.getName()).log(Level.SEVERE, null, ex);

@@ -27,8 +27,6 @@ public class TheaterAreaState implements Serializable{
     private int price;
     
     //Methods
-
-    
     
     public SeatState getSeatsState(int row, int col) {
         return this.seatsState[row][col];
@@ -88,6 +86,10 @@ public class TheaterAreaState implements Serializable{
     
     public void fillSeat(int row, int col) {
         this.seatsState[row][col] = SeatState.occupied;
+    }
+    
+    public void unFillSeat(int row, int col) {
+        this.seatsState[row][col] = SeatState.free;
     }
 
     public String getLocation() {
