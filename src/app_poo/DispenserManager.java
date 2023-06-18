@@ -40,7 +40,7 @@ public class DispenserManager {
     }
     
     public void explelCard(){
-        this.dispenser.expelCreditCard(1);
+        this.dispenser.expelCreditCard(20);
     }
     
     public void printScreen(String data){
