@@ -86,7 +86,7 @@ public class SeatSelectionScreen extends Screen{
                 this.dispenserManager.showScreen(30, this.paySc);
                 return ScreenResult.exitScreen;
             } else{
-                this.dispenserManager.setTitle("Usted no tiene ticket");
+                return ScreenResult.continueScreen;
             }
         }else {
             int row = (byte)((option & 0xFF00) >> 8);
@@ -99,6 +99,7 @@ public class SeatSelectionScreen extends Screen{
                 this.areaSt.fillSeat(row - 1, col - 1);
             } else if (tk.cols.size() >= 1) {
                 int i = 0;
+                this.n_Butacas--;
                 while (i < tk.cols.size() && (row != tk.rows.get(i) || col != tk.cols.get(i))) {
                     i++;
                 }
