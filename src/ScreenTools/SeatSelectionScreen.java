@@ -81,9 +81,9 @@ public class SeatSelectionScreen extends Screen{
             return ScreenResult.exitScreen;
         }else if (option == 'B') {
             if (this.n_Butacas > 0) {
-                
                 this.paySc = new PaymentScreen(this,this.tk,this.computePrice(),"",dispenserManager, "Inserte tarjeta", ScreenMode.messageMode);
                 this.dispenserManager.showScreen(30, this.paySc);
+                
                 return ScreenResult.exitScreen;
             } else{
                 return ScreenResult.continueScreen;

@@ -46,9 +46,11 @@ public class PaymentScreen extends Screen{
         return null;     
     }
     
+   
+    
     public ScreenResult optionButtonPressed(DispenserHardware dispHardw, char option) {
-        
         if (option == '0' || option == 'A'){
+            this.tk.transferNotSelected();
             return ScreenResult.exitScreen;
         }else if (option == '1') {
             long creditCard = this.dispenserManager.retainCard();

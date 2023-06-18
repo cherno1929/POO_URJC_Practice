@@ -40,10 +40,26 @@ public class Ticket {
     }
     
     public void resetTichet(){
-        this.rows = new ArrayList<Integer>();
+        rows = new ArrayList<Integer>();
         cols = new ArrayList<Integer>();
         nonSelectedRow = new TreeMap<String,List<Integer>>();
         nonSelectedCol = new TreeMap<String,List<Integer>>();
+    }
+    
+    public void resetSelection(){
+        rows = new ArrayList<Integer>();
+        cols = new ArrayList<Integer>();
+    }
+    
+    public void transferNotSelected() {
+        if (nonSelectedCol.containsKey(this.zona)) {
+            nonSelectedCol.get(this.zona).addAll(cols);
+            nonSelectedRow.get(this.zona).addAll(rows);
+        }else{
+            nonSelectedCol.put(this.zona, cols);
+            nonSelectedRow.put(this.zona, rows);
+        }
+        this.resetSelection();
     }
 
     public String getInfo() {
