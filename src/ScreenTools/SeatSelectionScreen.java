@@ -97,7 +97,7 @@ public class SeatSelectionScreen extends Screen{
                 this.dispenserManager.markSear(row, col);
                 this.n_Butacas++;
                 this.areaSt.fillSeat(row - 1, col - 1);
-            } else if (tk.cols.size() > 1) {
+            } else if (tk.cols.size() >= 1) {
                 int i = 0;
                 while (i < tk.cols.size() && (row != tk.rows.get(i) || col != tk.cols.get(i))) {
                     i++;
@@ -154,7 +154,7 @@ public class SeatSelectionScreen extends Screen{
     } 
 
     private void dealDataSeat(int row, int col,int i) {
-        if (this.tk.nonSelectedCol.size() == 0) {
+        if (!this.tk.nonSelectedCol.containsKey(this.areaSt.getName())) {
             List<Integer> cols = new ArrayList<Integer>();
             List<Integer> rows = new ArrayList<Integer>();
             cols.add(col);

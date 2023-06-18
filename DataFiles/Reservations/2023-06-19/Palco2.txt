@@ -1,6 +1,6 @@
-    ****
-   *****
-  ***** 
- *****  
-*****   
-****    
+    xxxx
+   xxxxx
+  xxxxx 
+ xxxxx  
+xxxxx   
+xxxx    
